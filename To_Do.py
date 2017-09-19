@@ -11,31 +11,31 @@ root.geometry("250x300")
 tasks = {}
 
 def update_listbox():
-  clear_list()
-  task_lst = []	
-  for key in tasks:
-  	task_lst.append(key)
-  	listbox.insert("end", key)
+    clear_list()
+    task_lst = []
+    for key in tasks:
+    	task_lst.append(key)
+    	listbox.insert("end", key)
 
 def clear_list():
-  listbox.delete(0, "end")
+    listbox.delete(0, "end")
 
 def add_task():
-  task = entry.get()
-  deadline = entry_d.get()
-  if task == "" or deadline == "":
-  	messagebox.showwarning("Attention!", "You must enter a task and a deadline.")
-  if task != "" and deadline != "":
-  	tasks.update({task:deadline})
-  entry.delete(0, "end")
-  entry_d.delete(0, "end")
-  update_listbox()
+    task = entry.get()
+    deadline = entry_d.get()
+    if task == "" or deadline == "":
+    	messagebox.showwarning("Attention!", "You must enter a task and a deadline.")
+    if task != "" and deadline != "":
+    	tasks.update({task:deadline})
+    entry.delete(0, "end")
+    entry_d.delete(0, "end")
+    update_listbox()
 
 
 def show_deadline():
-  task = listbox.get("active")
-  deadline = tasks.get(task)
-  lb_display["text"] = deadline
+    task = listbox.get("active")
+    deadline = tasks.get(task)
+    lb_display["text"] = deadline
 
 
 def update_deadline():
@@ -46,16 +46,16 @@ def update_deadline():
 
 
 def delete_task():
-  task = listbox.get("active")
-  if task in tasks: del tasks[task]
-  update_listbox()
+    task = listbox.get("active")
+    if task in tasks: del tasks[task]
+    update_listbox()
 
 def delete_all():
-  confirmed = messagebox.askyesno("Please confirm", "Are you sure you want to delete all?")
-  if confirmed == True:
-	  global tasks
-	  tasks = {}
-	  update_listbox()
+    confirmed = messagebox.askyesno("Please confirm", "Are you sure you want to delete all?")
+    if confirmed == True:
+	    global tasks
+	    tasks = {}
+	    update_listbox()
 
 lb_task = tkinter.Label(root, text = "Task", bg = "grey", fg = "white")
 lb_date = tkinter.Label(root, text = "Deadline", bg = "grey", fg = "white")
